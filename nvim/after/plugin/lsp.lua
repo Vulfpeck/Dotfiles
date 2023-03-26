@@ -79,4 +79,10 @@ require("mason-null-ls").setup({
 -- Required when `automatic_setup` is true
 require("mason-null-ls").setup_handlers()
 
+require("cmp").setup({
+	window = {
+		completion = require('cmp').config.window.bordered()
+	}
+})
+
 lsp.setup()
