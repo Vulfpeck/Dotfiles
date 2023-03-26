@@ -1,9 +1,9 @@
 local plugins = {
-	{ "nyoom-engineering/oxocarbon.nvim" },
+	{ "nyoom-engineering/oxocarbon.nvim", enable = false },
 	{
 		"olimorris/onedarkpro.nvim",
 		priority = 1000, -- Ensure it loads first
-		enabled = false,
+		enabled = true,
 	},
 	{
 		"nvim-telescope/telescope-fzf-native.nvim",
@@ -106,6 +106,7 @@ local plugins = {
 	},
 	{
 		"chriskempson/base16-vim",
+		enabled = false,
 		config = function()
 		end
 	}
