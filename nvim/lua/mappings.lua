@@ -99,3 +99,4 @@ map("n", "<C-k>", "<Cmd>wincmd k<CR>", opts)
 map("n", "<C-l>", "<Cmd>wincmd l<CR>", opts)
 
 map("n", "<leader>p", '"_dP', opts)
+map("n", "<leader>qa", '<Cmd>qa<CR>', opts)

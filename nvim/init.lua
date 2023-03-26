@@ -18,7 +18,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 
 if vim.fn.executable("nvr") == 1 then
-  vim.env.GIT_EDITOR = "nvr --remote-tab-wait +'set bufhidden=delete'"
+	vim.env.GIT_EDITOR = "nvr --remote-tab-wait +'set bufhidden=delete'"
 end
 require("plugins")
 require("mappings")

@@ -7,7 +7,8 @@ local plugins = {
 	},
 	{
 		"nvim-telescope/telescope-fzf-native.nvim",
-		build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+		build =
+		"cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
 	},
 	{
 		"nvim-telescope/telescope.nvim",
@@ -28,14 +29,14 @@ local plugins = {
 		branch = "v2.x",
 		dependencies = {
 			-- LSP Support
-			{ "neovim/nvim-lspconfig" }, -- Required
-			{ "williamboman/mason.nvim" }, -- Optional
+			{ "neovim/nvim-lspconfig" },          -- Required
+			{ "williamboman/mason.nvim" },        -- Optional
 			{ "williamboman/mason-lspconfig.nvim" }, -- Optional
 
 			-- Autocompletion
-			{ "hrsh7th/nvim-cmp" }, -- Required
+			{ "hrsh7th/nvim-cmp" },  -- Required
 			{ "hrsh7th/cmp-nvim-lsp" }, -- Required
-			{ "L3MON4D3/LuaSnip" }, -- Required
+			{ "L3MON4D3/LuaSnip" },  -- Required
 		},
 	},
 	{
@@ -62,8 +63,12 @@ local plugins = {
 	{
 		"numToStr/Comment.nvim",
 		config = function()
-			require("Comment").setup()
-		end,
+			require('Comment').setup({
+				toggler = {
+					line = '<leader>/'
+				}
+			})
+		end
 	},
 	{
 		"romgrk/barbar.nvim",
@@ -84,9 +89,26 @@ local plugins = {
 	},
 	{
 		"kdheepak/lazygit.nvim",
-		init = function ()
+		init = function()
 		end
 	},
+	{
+		'akinsho/toggleterm.nvim',
+		version = "*",
+		config = {
+			open_mapping = [[<c-\>]],
+			direction = 'float',
+			auto_scroll = true,
+			winbar = {
+				enabled = true
+			}
+		}
+	},
+	{
+		"chriskempson/base16-vim",
+		config = function()
+		end
+	}
 }
 
 require("lazy").setup(plugins, {})
