@@ -3,7 +3,10 @@ vim.g.mapleader = " "
 local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
-vim.keymap.set("n", "<leader>lg", "<cmd>LazyGit<cr>", {silent = true, noremap = true})
+vim.keymap.set("n", "<leader>lg", "<cmd>LazyGit<cr>", { silent = true, noremap = true })
+
+vim.keymap.set("n", "<leader>sb", "<cmd>SidebarNvimToggle<cr>", {})
+
 -- telescope shit
 local builtin = require("telescope.builtin")
 vim.keymap.set("n", "<leader>ff", function()
@@ -12,7 +15,6 @@ end, {})
 vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
 vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
 vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
-
 
 vim.keymap.set("n", "<leader>ee", "<cmd>NvimTreeToggle<cr>", { silent = true, noremap = true })
 vim.keymap.set("n", "<leader>ef", "<cmd>NvimTreeFocus<cr>", { silent = true, noremap = true })
@@ -23,7 +25,6 @@ vim.keymap.set("n", "<leader>ec", "<cmd>NvimTreeFocus<cr>", { silent = true, nor
 vim.keymap.set("n", "<leader>q", "<cmd>TroubleToggle<cr>", { silent = true, noremap = true })
 
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float)
-vim.keymap.set("n", "<leader>/", vim.diagnostic.open_float)
 
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
@@ -52,7 +53,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
 	end,
 })
-
 
 -- Move to previous/next
 
@@ -99,4 +99,4 @@ map("n", "<C-k>", "<Cmd>wincmd k<CR>", opts)
 map("n", "<C-l>", "<Cmd>wincmd l<CR>", opts)
 
 map("n", "<leader>p", '"_dP', opts)
-map("n", "<leader>qa", '<Cmd>qa<CR>', opts)
+map("n", "<leader>qa", "<Cmd>qa<CR>", opts)

@@ -63,12 +63,12 @@ local plugins = {
 	{
 		"numToStr/Comment.nvim",
 		config = function()
-			require('Comment').setup({
+			require("Comment").setup({
 				toggler = {
-					line = '<leader>/'
-				}
+					line = "<leader>/",
+				},
 			})
-		end
+		end,
 	},
 	{
 		"romgrk/barbar.nvim",
@@ -90,26 +90,44 @@ local plugins = {
 	{
 		"kdheepak/lazygit.nvim",
 		init = function()
-		end
+		end,
 	},
 	{
-		'akinsho/toggleterm.nvim',
+		"akinsho/toggleterm.nvim",
 		version = "*",
 		config = {
 			open_mapping = [[<c-\>]],
-			direction = 'float',
+			direction = "float",
 			auto_scroll = true,
 			winbar = {
-				enabled = true
-			}
-		}
+				enabled = true,
+			},
+		},
 	},
 	{
 		"chriskempson/base16-vim",
 		enabled = false,
 		config = function()
-		end
-	}
+		end,
+	},
+	{
+		"sidebar-nvim/sidebar.nvim",
+		config = function()
+			require("sidebar-nvim").setup({
+				open = true,
+				side = "right",
+				hide_statusline = true,
+				sections = {
+					"buffers",
+					"git",
+					"diagnostics",
+				},
+			})
+		end,
+	},
+	{
+		"tpope/vim-fugitive",
+	},
 }
 
 require("lazy").setup(plugins, {})
