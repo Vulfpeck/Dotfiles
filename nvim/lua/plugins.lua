@@ -6,6 +6,15 @@ local plugins = {
 		enabled = true,
 	},
 	{
+		"morhetz/gruvbox",
+		config = function()
+			vim.g.gruvbox_transparent_bg = 1
+			vim.g.gruvbox_italic = 1
+			vim.g.gruvbox_contrast_dark = "hard"
+			vim.cmd("hi! link SignColumn  Normal")
+		end,
+	},
+	{
 		"nvim-telescope/telescope-fzf-native.nvim",
 		build =
 		"cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
@@ -63,11 +72,7 @@ local plugins = {
 	{
 		"numToStr/Comment.nvim",
 		config = function()
-			require("Comment").setup({
-				toggler = {
-					line = "<leader>/",
-				},
-			})
+			require("Comment").setup({})
 		end,
 	},
 	{
@@ -116,17 +121,78 @@ local plugins = {
 			require("sidebar-nvim").setup({
 				open = true,
 				side = "right",
-				hide_statusline = true,
+				hide_statusline = false,
 				sections = {
 					"buffers",
 					"git",
 					"diagnostics",
+					"symbols",
 				},
 			})
 		end,
 	},
 	{
 		"tpope/vim-fugitive",
+	},
+	{
+		"nvim-lualine/lualine.nvim",
+		config = function()
+			local colors = {
+				blue = "#80a0ff",
+				cyan = "#79dac8",
+				black = "#080808",
+				white = "#c6c6c6",
+				red = "#ff5189",
+				violet = "#d183e8",
+				grey = "#303030",
+			}
+
+			local bubbles_theme = {
+				normal = {
+					a = { fg = colors.black, bg = colors.violet },
+					b = { fg = colors.white, bg = colors.grey },
+					c = { fg = colors.black, bg = "none" },
+				},
+				insert = { a = { fg = colors.black, bg = colors.blue } },
+				visual = { a = { fg = colors.black, bg = colors.cyan } },
+				replace = { a = { fg = colors.black, bg = colors.red } },
+				inactive = {
+					a = { fg = colors.white, bg = colors.black },
+					b = { fg = colors.white, bg = colors.black },
+					c = { fg = colors.black, bg = colors.black },
+				},
+			}
+
+			require("lualine").setup({
+				options = {
+					theme = bubbles_theme,
+					component_separators = "|",
+					section_separators = { left = "", right = "" },
+				},
+				sections = {
+					lualine_a = {
+						{ "mode", separator = { left = "" }, right_padding = 2 },
+					},
+					lualine_b = { "filename", "branch" },
+					lualine_c = { "fileformat" },
+					lualine_x = {},
+					lualine_y = { "filetype", "progress" },
+					lualine_z = {
+						{ "location", separator = { right = "" }, left_padding = 2 },
+					},
+				},
+				inactive_sections = {
+					lualine_a = { "filename" },
+					lualine_b = {},
+					lualine_c = {},
+					lualine_x = {},
+					lualine_y = {},
+					lualine_z = { "location" },
+				},
+				tabline = {},
+				extensions = {},
+			})
+		end,
 	},
 }
 
