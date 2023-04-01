@@ -6,6 +6,10 @@ local plugins = {
 		enabled = true,
 	},
 	{
+		"catppuccin/nvim",
+		name = "catppuccin"
+	},
+	{
 		"morhetz/gruvbox",
 		config = function()
 			vim.g.gruvbox_transparent_bg = 1
