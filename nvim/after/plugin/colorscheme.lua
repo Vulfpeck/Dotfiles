@@ -1,5 +1,5 @@
 vim.opt.background = "dark" -- set this to dark or light
-vim.cmd("colorscheme catppuccin-mocha")
+vim.cmd("colorscheme catppuccin-latte")
 -- vim.cmd.colorscheme("oxocarbon")
 -- vim.cmd("colorscheme onedark")
 -- vim.cmd("colorscheme gruvbox")
