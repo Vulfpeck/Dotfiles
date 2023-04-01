@@ -6,7 +6,7 @@ local lsp = require("lsp-zero").preset({
 })
 
 local null_ls = require("null-ls")
-vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
+vim.cmd [[autocmd BufWritePre * NullFormat]]
 lsp.ensure_installed({
 	-- JS Crap
 	"graphql",
@@ -55,15 +55,16 @@ null_ls.setup({
 	end,
 	sources = {
 		-- You can add tools not supported by mason.nvim
-		null_ls.builtins.formatting.prettier,
+
 		null_ls.builtins.diagnostics.eslint,
-		null_ls.builtins.code_actions.eslint,
-		null_ls.builtins.formatting.prismaFmt,
-
-		null_ls.builtins.formatting.stylua,
-
-		null_ls.builtins.formatting.rustfmt,
 		null_ls.builtins.diagnostics.fish,
+		
+		null_ls.builtins.code_actions.eslint,
+		
+		null_ls.builtins.formatting.prismaFmt,
+		null_ls.builtins.formatting.stylua,
+		null_ls.builtins.formatting.rustfmt,	
+		null_ls.builtins.formatting.prettier,
 		null_ls.builtins.formatting.fish_indent
 	},
 })
