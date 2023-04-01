@@ -4,6 +4,7 @@
   "barbar.nvim": { "branch": "master", "commit": "d0b39de8ce48e9efced88edc9244ca21e571bb98" },
   "catppuccin": { "branch": "main", "commit": "73587f9c454da81679202f1668c30fea6cdafd5e" },
   "cmp-nvim-lsp": { "branch": "main", "commit": "0e6b2ed705ddcff9738ec4ea838141654f12eeef" },
+  "github-nvim-theme": { "branch": "main", "commit": "b888267d71bfbccd70672f748a4f02c415fbe817" },
   "gruvbox": { "branch": "master", "commit": "bf2885a95efdad7bd5e4794dd0213917770d79b7" },
   "lazy.nvim": { "branch": "main", "commit": "57cce98dfdb2f2dd05a0567d89811e6d0505e13b" },
   "lazygit.nvim": { "branch": "main", "commit": "32bffdebe273e571588f25c8a708ca7297928617" },
