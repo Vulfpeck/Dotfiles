@@ -87,3 +87,6 @@ export NVM_LAZY_LOAD=true
 antigen bundle lukechilds/zsh-nvm
 
 antigen apply
+
+
+alias tmux="tmux -u2"
