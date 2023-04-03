@@ -1,5 +1,5 @@
 vim.opt.background = "dark" -- set this to dark or light
-vim.cmd("colorscheme github_light")
+vim.cmd("colorscheme github_dark")
 -- vim.cmd("colorscheme catppuccin-latte")
 -- vim.cmd.colorscheme("oxocarbon")
 -- vim.cmd("colorscheme onedark")
