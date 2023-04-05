@@ -7,7 +7,7 @@ local plugins = {
 	},
 	{
 		"catppuccin/nvim",
-		name = "catppuccin"
+		name = "catppuccin",
 	},
 	{
 		"projekt0n/github-nvim-theme",
@@ -23,8 +23,7 @@ local plugins = {
 	},
 	{
 		"nvim-telescope/telescope-fzf-native.nvim",
-		build =
-		"cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+		build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
 	},
 	{
 		"nvim-telescope/telescope.nvim",
@@ -45,14 +44,14 @@ local plugins = {
 		branch = "v2.x",
 		dependencies = {
 			-- LSP Support
-			{ "neovim/nvim-lspconfig" },          -- Required
-			{ "williamboman/mason.nvim" },        -- Optional
+			{ "neovim/nvim-lspconfig" }, -- Required
+			{ "williamboman/mason.nvim" }, -- Optional
 			{ "williamboman/mason-lspconfig.nvim" }, -- Optional
 
 			-- Autocompletion
-			{ "hrsh7th/nvim-cmp" },  -- Required
+			{ "hrsh7th/nvim-cmp" }, -- Required
 			{ "hrsh7th/cmp-nvim-lsp" }, -- Required
-			{ "L3MON4D3/LuaSnip" },  -- Required
+			{ "L3MON4D3/LuaSnip" }, -- Required
 		},
 	},
 	{
@@ -101,8 +100,7 @@ local plugins = {
 	},
 	{
 		"kdheepak/lazygit.nvim",
-		init = function()
-		end,
+		init = function() end,
 	},
 	{
 		"akinsho/toggleterm.nvim",
@@ -119,8 +117,7 @@ local plugins = {
 	{
 		"chriskempson/base16-vim",
 		enabled = false,
-		config = function()
-		end,
+		config = function() end,
 	},
 	{
 		"sidebar-nvim/sidebar.nvim",
@@ -146,6 +143,9 @@ local plugins = {
 		config = function()
 			require("lualine").setup()
 		end,
+	},
+	{
+		"justinmk/vim-sneak",
 	},
 }
 

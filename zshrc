@@ -90,3 +90,10 @@ antigen apply
 
 
 alias tmux="tmux -u2"
+
+# bun completions
+[ -s "/home/tp/.bun/_bun" ] && source "/home/tp/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
