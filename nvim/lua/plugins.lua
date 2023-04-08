@@ -140,6 +140,10 @@ local plugins = {
 	{
 		"justinmk/vim-sneak",
 	},
+	{
+		"mg979/vim-visual-multi",
+		config = function() end,
+	},
 }
 
 require("lazy").setup(plugins, {})
