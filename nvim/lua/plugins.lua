@@ -22,6 +22,19 @@ local plugins = {
 		end,
 	},
 	{
+		"kvrohit/mellow.nvim",
+	},
+	{
+		"olivercederborg/poimandres.nvim",
+		config = function()
+			require("poimandres").setup({
+				-- leave this setup function empty for default config
+				-- or refer to the configuration section
+				-- for configuration options
+			})
+		end,
+	},
+	{
 		"nvim-telescope/telescope-fzf-native.nvim",
 		build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
 	},
@@ -116,14 +129,14 @@ local plugins = {
 		"sidebar-nvim/sidebar.nvim",
 		config = function()
 			require("sidebar-nvim").setup({
-				open = true,
+				open = false,
 				side = "right",
 				hide_statusline = false,
 				sections = {
+					"symbols",
+					"diagnostics",
 					"buffers",
 					"git",
-					"diagnostics",
-					"symbols",
 				},
 			})
 		end,
