@@ -23,8 +23,6 @@ font pango:monospace 8
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
 
-exec --no-startup-id /usr/lib/pam_kwallet_init
-exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
 
@@ -35,6 +33,7 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
+exec --no-startup-id feh --bg-scale --zoom fill ~/wallpaper.jpg
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -57,7 +56,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id rofi -show drun 
+bindsym $mod+d exec --no-startup-id qdbus org.kde.kglobalaccel /component/krunner org.kde.kglobalaccel.Component.invokeShortcut 'run command'
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -156,7 +155,9 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+# bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec --no-startup-id qdbus org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout -1 -1 -1
+bindcode 133 --release exec --no-startup-id qdbus org.kde.plasmashell /PlasmaShell org.kde.PlasmaShell.activateLauncherMenu
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -182,29 +183,46 @@ mode "resize" {
         bindsym Escape mode "default"
         bindsym $mod+r mode "default"
 }
-# keybinding to lock screen
-bindsym Control+$mod+l exec "i3lock -c 000000"
 
 bindsym $mod+r mode "resize"
-default_border none
-gaps inner 8px
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
-        status_command i3status
-}
 
-for_window [title="Desktop — Plasma"] kill, floating enable, border none
-for_window [class="plasmashell"] floating enable
-for_window [class="Plasma"] floating enable, border none
-for_window [title="plasma-desktop"] floating enable, border none
-for_window [title="win7"] floating enable, border none
-for_window [class="krunner"] floating enable, border none
-for_window [class="Kmix"] floating enable, border none
-for_window [class="Klipper"] floating enable, border none
-for_window [class="Plasmoidviewer"] floating enable, border none
-for_window [class="(?i)*nextcloud*"] floating disable
-for_window [class="plasmashell" window_type="notification"] floating enable, border none, move right 700px, move down 450px
-no_focus [class="plasmashell" window_type="notification"] 
+default_border none
+gaps inner 8 
 
+# >>> Plasma Integration <<<
+  # Try to kill the wallpaper set by Plasma (it takes up the entire workspace and hides everything)
+  
+  for_window [title="Desktop @ QRect.*"] kill; floating enable; border none
+  
+  # Compositor (Animations, Shadows, Transparency)
+  exec --no-startup-id picom --experimental-backends -cCFb
+
+# >>> Window rules <<<
+  # >>> Avoid tiling Plasma popups, dropdown windows, etc. <<<
+  # For the first time, manually resize them, i3 will remember the setting for floating windows
+    for_window [class="yakuake"] floating enable;
+    for_window [class="lattedock"] floating enable;
+    for_window [class="plasmashell"] floating enable;
+    for_window [class="Kmix"] floating enable; border none
+    for_window [class="kruler"] floating enable; border none
+    for_window [class="Plasma"] floating enable; border none
+    for_window [class="Klipper"] floating enable; border none
+    for_window [class="krunner"] floating enable; border none
+    for_window [class="Plasmoidviewer"] floating enable; border none
+    for_window [title="plasma-desktop"] floating enable; border none
+    for_window [class="plasmashell" window_type="notification"] floating enable, border none, move position 1450px 20px
+    no_focus [class="plasmashell" window_type="notification"] 
+
+  # >>> Avoid tiling for non-Plasma stuff <<<
+    for_window [window_role="pop-up"] floating enable
+    for_window [window_role="bubble"] floating enable
+    for_window [window_role="task_dialog"] floating enable
+    for_window [window_role="Preferences"] floating enable
+    for_window [window_role="About"] floating enable
+    for_window [window_type="dialog"] floating enable
+    for_window [window_type="menu"] floating enable
+    for_window [instance="__scratchpad"] floating enable
+exec --no-startup-id /usr/lib/pam_kwallet_init
