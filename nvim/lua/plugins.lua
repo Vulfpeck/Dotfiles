@@ -105,14 +105,7 @@ local plugins = {
 	{
 		"akinsho/toggleterm.nvim",
 		version = "*",
-		config = {
-			open_mapping = [[<c-\>]],
-			direction = "float",
-			auto_scroll = true,
-			winbar = {
-				enabled = true,
-			},
-		},
+		config = {},
 	},
 	{
 		"chriskempson/base16-vim",
