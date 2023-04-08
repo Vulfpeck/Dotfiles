@@ -6,7 +6,8 @@ local lsp = require("lsp-zero").preset({
 })
 
 local null_ls = require("null-ls")
-vim.cmd [[autocmd BufWritePre * NullFormat]]
+vim.cmd([[autocmd BufWritePre * NullFormat]])
+
 lsp.ensure_installed({
 	-- JS Crap
 	"graphql",
@@ -58,21 +59,19 @@ null_ls.setup({
 
 		null_ls.builtins.diagnostics.eslint,
 		null_ls.builtins.diagnostics.fish,
-		
 		null_ls.builtins.code_actions.eslint,
-		
 		null_ls.builtins.formatting.prismaFmt,
 		null_ls.builtins.formatting.stylua,
-		null_ls.builtins.formatting.rustfmt,	
-		null_ls.builtins.formatting.prettier,
-		null_ls.builtins.formatting.fish_indent
+		null_ls.builtins.formatting.rustfmt,
+		null_ls.builtins.formatting.prettierd,
+		null_ls.builtins.formatting.fish_indent,
 	},
 })
 
 -- See mason-null-ls.nvim's documentation for more details:
 -- https://github.com/jay-babu/mason-null-ls.nvim#setup
 require("mason-null-ls").setup({
-	ensure_installed = nil,
+	ensure_installed = { "prettierd", "eslint" },
 	automatic_installation = true, -- You can still set this to `true`
 	automatic_setup = true,
 })
@@ -80,10 +79,14 @@ require("mason-null-ls").setup({
 -- Required when `automatic_setup` is true
 require("mason-null-ls").setup_handlers()
 
-require("cmp").setup({
+local cmp = require("cmp")
+cmp.setup({
 	window = {
-		completion = require('cmp').config.window.bordered()
-	}
+		completion = cmp.config.window.bordered(),
+	},
+	mapping = {
+		["<C-Space>"] = cmp.mapping.complete(),
+	},
 })
 
 lsp.setup()
