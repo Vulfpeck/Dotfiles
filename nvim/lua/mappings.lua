@@ -100,7 +100,6 @@ map("n", "<C-l>", "<Cmd>wincmd l<CR>", opts)
 
 local modes = {
 	"n",
-	"i",
 	"t",
 }
 
@@ -108,7 +107,6 @@ for key, value in pairs(modes) do
 	map(value, "<C-\\>", "<Cmd>ToggleTerm direction=float<CR>", opts)
 	map(value, "<C-j>", "<Cmd>ToggleTerm direction=horizontal<CR>", opts)
 	map(value, "<C-`>", "<Cmd>ToggleTerm direction=vertical<CR>", opts)
-	map(value, "<leader>tt", "<Cmd>ToggleTerm direction=tab<CR>", opts)
 end
 
 map("n", "<leader>p", '"_dP', opts)
