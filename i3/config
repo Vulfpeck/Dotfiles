@@ -224,9 +224,10 @@ bindsym $mod+r mode "resize"
 exec --no-startup-id /usr/lib/pam_kwallet_init
 bindsym $mod+Ctrl+L exec --no-startup-id  qdbus org.freedesktop.ScreenSaver /ScreenSaver Lock
 
-client.focused #FFFFFF #FFFFFF #000000 #FFFFFF 
-client.focused_inactive #FFFFFF #FFFFFF #000000 #FFFFFF
-client.unfocused  #FFFFFF #FFFFFF #000000 #FFFFFF
+client.focused #FF0000 #FFFFFF #000000 #FFFFFF 
+client.focused_inactive #FF0000 #FFFFFF #000000 #FFFFFF
+client.unfocused  #FF0000 #FFFFFF #000000 #FFFFFF
 client.urgent #FFFFFF #FFFFFF #000000 #FFFFFF
 
 gaps inner 8
+default_border pixel 0

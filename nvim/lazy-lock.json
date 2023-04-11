@@ -6,6 +6,7 @@
   "cmp-nvim-lsp": { "branch": "main", "commit": "0e6b2ed705ddcff9738ec4ea838141654f12eeef" },
   "github-nvim-theme": { "branch": "main", "commit": "3da5e2a42e6213fb85d74917611ab605634e8c3d" },
   "gruvbox": { "branch": "master", "commit": "bf2885a95efdad7bd5e4794dd0213917770d79b7" },
+  "gruvbox-material": { "branch": "master", "commit": "b12f46903867939b963c8c20abb27dd507d77054" },
   "lazy.nvim": { "branch": "main", "commit": "57cce98dfdb2f2dd05a0567d89811e6d0505e13b" },
   "lazygit.nvim": { "branch": "main", "commit": "32bffdebe273e571588f25c8a708ca7297928617" },
   "lsp-zero.nvim": { "branch": "v2.x", "commit": "87f25b378ab5f7da19c6dd38d9c415750334b338" },

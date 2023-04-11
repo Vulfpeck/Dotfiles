@@ -22,6 +22,9 @@ local plugins = {
 		end,
 	},
 	{
+		"sainnhe/gruvbox-material",
+	},
+	{
 		"kvrohit/mellow.nvim",
 	},
 	{
