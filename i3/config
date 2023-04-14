@@ -231,3 +231,4 @@ client.urgent #FFFFFF #FFFFFF #000000 #FFFFFF
 
 gaps inner 8
 default_border pixel 0
+focus_follows_mouse no
