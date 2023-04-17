@@ -8,21 +8,26 @@ vim.keymap.set("n", "<leader>lg", "<cmd>LazyGit<cr>", { silent = true, noremap =
 vim.keymap.set("n", "<leader>sb", "<cmd>SidebarNvimToggle<cr>", {})
 
 -- telescope shit
-local builtin = require("telescope.builtin")
+local telescope_builtin = require("telescope.builtin")
 vim.keymap.set("n", "<leader>ff", function()
-	builtin.find_files({ find_command = { "fd", fname } })
+	telescope_builtin.find_files({ find_command = { "fd", fname } })
 end, {})
-vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
-vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
-vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
+vim.keymap.set("n", "<leader>fg", telescope_builtin.live_grep, {})
+vim.keymap.set("n", "<leader>gs", telescope_builtin.grep_string, {})
+vim.keymap.set("n", "<leader>fb", telescope_builtin.buffers, {})
+vim.keymap.set("n", "<leader>fr", telescope_builtin.resume, {})
+vim.keymap.set("n", "<leader>fh", telescope_builtin.help_tags, {})
+vim.keymap.set("n", "<leader>lr", telescope_builtin.lsp_references, {})
+vim.keymap.set("n", "<leader>ld", telescope_builtin.diagnostics, {})
+vim.keymap.set("n", "<leader>li", telescope_builtin.lsp_implementations, {})
+vim.keymap.set("n", "<leader>ldf", telescope_builtin.lsp_definitions, {})
+vim.keymap.set("n", "<leader>ltd", telescope_builtin.lsp_type_definitions, {})
 
 vim.keymap.set("n", "<leader>ee", "<cmd>NvimTreeToggle<cr>", { silent = true, noremap = true })
 vim.keymap.set("n", "<leader>ef", "<cmd>NvimTreeFocus<cr>", { silent = true, noremap = true })
 vim.keymap.set("n", "<leader>ec", "<cmd>NvimTreeFocus<cr>", { silent = true, noremap = true })
 
 -- lsp shit
-
-vim.keymap.set("n", "<leader>q", "<cmd>TroubleToggle<cr>", { silent = true, noremap = true })
 
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float)
 
@@ -50,7 +55,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, opts)
 		vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
 		vim.keymap.set("n", "<leader>cs", vim.lsp.buf.signature_help, opts)
-		vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
 	end,
 })
 

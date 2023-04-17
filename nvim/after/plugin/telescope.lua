@@ -2,14 +2,11 @@ require("telescope").setup({
 	pickers = {
 		find_files = {
 			hidden = true,
+			theme = "ivy",
 		},
 	},
 	defaults = {
-		layout_defaults = {
-			horizontal = {
-				width_padding = 0.2,
-			},
-		},
+		layout_strategy = "bottom_pane",
 	},
 	extensions = {
 		fzf = {
