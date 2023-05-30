@@ -1,16 +1,32 @@
 local plugins = {
-	{ "nyoom-engineering/oxocarbon.nvim", enable = false },
+	{ "nyoom-engineering/oxocarbon.nvim", enable = false, lazy = true },
 	{
 		"olimorris/onedarkpro.nvim",
 		priority = 1000, -- Ensure it loads first
 		enabled = true,
+		lazy = true,
 	},
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
+		lazy = true,
+	},
+	{ "rose-pine/neovim", lazy = true },
+	{ "savq/melange-nvim", 
+lazy = true },
+	{
+		"loctvl842/monokai-pro.nvim",
+		config = function()
+			require("monokai-pro").setup({
+				filter = "octagon",
+				terminal_colors = true,
+			})
+		end,
+		lazy = true,
 	},
 	{
 		"projekt0n/github-nvim-theme",
+		lazy = true,
 	},
 	{
 		"morhetz/gruvbox",
@@ -20,12 +36,14 @@ local plugins = {
 			vim.g.gruvbox_contrast_dark = "hard"
 			vim.cmd("hi! link SignColumn  Normal")
 		end,
+		lazy = true,
 	},
 	{
 		"sainnhe/gruvbox-material",
 	},
 	{
 		"kvrohit/mellow.nvim",
+		lazy = true,
 	},
 	{
 		"olivercederborg/poimandres.nvim",
@@ -36,10 +54,11 @@ local plugins = {
 				-- for configuration options
 			})
 		end,
+		lazy = true,
 	},
 	{
 		"nvim-telescope/telescope-fzf-native.nvim",
-		build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+		build = "make",
 	},
 	{
 		"nvim-telescope/telescope.nvim",
@@ -49,7 +68,6 @@ local plugins = {
 	{ "jose-elias-alvarez/null-ls.nvim" },
 	{
 		"jay-babu/mason-null-ls.nvim",
-		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
 			"williamboman/mason.nvim",
 			"jose-elias-alvarez/null-ls.nvim",
@@ -69,10 +87,6 @@ local plugins = {
 			{ "hrsh7th/cmp-nvim-lsp" }, -- Required
 			{ "L3MON4D3/LuaSnip" }, -- Required
 		},
-	},
-	{
-		"folke/trouble.nvim",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
 	},
 	{
 		"kylechui/nvim-surround",
@@ -122,11 +136,6 @@ local plugins = {
 		"akinsho/toggleterm.nvim",
 		version = "*",
 		config = {},
-	},
-	{
-		"chriskempson/base16-vim",
-		enabled = false,
-		config = function() end,
 	},
 	{
 		"sidebar-nvim/sidebar.nvim",
