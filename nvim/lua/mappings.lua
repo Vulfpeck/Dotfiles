@@ -109,7 +109,7 @@ local modes = {
 
 for key, value in pairs(modes) do
 	map(value, "<C-\\>", "<Cmd>ToggleTerm direction=float<CR>", opts)
-	map(value, "<C-j>", "<Cmd>ToggleTerm direction=horizontal<CR>", opts)
+	map(value, "<C-t>", "<Cmd>ToggleTerm direction=horizontal<CR>", opts)
 	map(value, "<C-`>", "<Cmd>ToggleTerm direction=vertical<CR>", opts)
 end
 
