@@ -1,60 +1,6 @@
 local plugins = {
-	{ "nyoom-engineering/oxocarbon.nvim", enable = false, lazy = true },
-	{
-		"olimorris/onedarkpro.nvim",
-		priority = 1000, -- Ensure it loads first
-		enabled = true,
-		lazy = true,
-	},
-	{
-		"catppuccin/nvim",
-		name = "catppuccin",
-		lazy = true,
-	},
-	{ "rose-pine/neovim", lazy = true },
-	{ "savq/melange-nvim", 
-lazy = true },
-	{
-		"loctvl842/monokai-pro.nvim",
-		config = function()
-			require("monokai-pro").setup({
-				filter = "octagon",
-				terminal_colors = true,
-			})
-		end,
-		lazy = true,
-	},
-	{
-		"projekt0n/github-nvim-theme",
-		lazy = true,
-	},
-	{
-		"morhetz/gruvbox",
-		config = function()
-			vim.g.gruvbox_transparent_bg = 1
-			vim.g.gruvbox_italic = 1
-			vim.g.gruvbox_contrast_dark = "hard"
-			vim.cmd("hi! link SignColumn  Normal")
-		end,
-		lazy = true,
-	},
 	{
 		"sainnhe/gruvbox-material",
-	},
-	{
-		"kvrohit/mellow.nvim",
-		lazy = true,
-	},
-	{
-		"olivercederborg/poimandres.nvim",
-		config = function()
-			require("poimandres").setup({
-				-- leave this setup function empty for default config
-				-- or refer to the configuration section
-				-- for configuration options
-			})
-		end,
-		lazy = true,
 	},
 	{
 		"nvim-telescope/telescope-fzf-native.nvim",
