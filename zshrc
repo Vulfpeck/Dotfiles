@@ -13,16 +13,17 @@ if [ -f ~/.zshrc.aux ]; then
 fi
 
 
-export NVM_COMPLETION=true
 export NVM_LAZY_LOAD=true
+
+export skip_global_compinit=1
 export NVM_LAZY_LOAD_EXTRA_COMMANDS=('nvim')
-export NVM_AUTO_USE=true
 
 source ~/Dotfiles/zsh/antigen.zsh
+
+antigen use oh-my-zsh
+antigen theme romkatv/powerlevel10k
 antigen bundle lukechilds/zsh-nvm
 antigen bundle z
-antigen theme romkatv/powerlevel10k
-antigen bundle git
 antigen apply
 
 alias tmux="tmux -u2"
@@ -35,5 +36,6 @@ alias vim="nvim"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+# # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
