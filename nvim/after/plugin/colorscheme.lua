@@ -1,6 +1,7 @@
 -- vim.opt.termguicolors = false
 -- vim.cmd("colorscheme github_light_default")
 -- vim.cmd("colorscheme gruvbox")
+vim.opt.termguicolors = true
 vim.cmd("colorscheme gruvbox-material")
 -- vim.cmd("colorscheme catppuccin-macchiato")
 -- vim.cmd("colorscheme monokai-pro")

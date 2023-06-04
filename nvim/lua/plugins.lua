@@ -2,6 +2,7 @@ local plugins = {
 	{
 		"sainnhe/gruvbox-material",
 	},
+	{ 'savq/melange-nvim'},
 	{
 		"nvim-telescope/telescope-fzf-native.nvim",
 		build = "make",

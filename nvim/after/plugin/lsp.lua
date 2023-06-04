@@ -34,6 +34,27 @@ lsp.on_attach(function(client, bufnr)
 	lsp.default_keymaps({ buffer = bufnr })
 end)
 
+local function organize_imports()
+	local params = {
+		command = "_typescript.organizeImports",
+		arguments = { vim.api.nvim_buf_get_name(0) },
+		title = "",
+	}
+	vim.lsp.buf.execute_command(params)
+end
+
+require("lspconfig").tsserver.setup({
+	on_attach = function()
+		vim.keymap.set("n", "<leader>oi", "<cmd>OrganizeImports<cr>", { noremap = true, silent = true })
+	end,
+	commands = {
+		OrganizeImports = {
+			organize_imports,
+			description = "Organize Imports",
+		},
+	},
+})
+
 null_ls.setup({
 	on_attach = function(client, bufnr)
 		local format_cmd = function(input)
