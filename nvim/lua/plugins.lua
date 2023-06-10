@@ -14,7 +14,7 @@ local plugins = {
 		end,
 		lazy = false,
 	},
-	{ 'savq/melange-nvim'},
+	{ 'savq/melange-nvim' },
 	{
 		"nvim-telescope/telescope-fzf-native.nvim",
 		build = "make",
@@ -49,7 +49,7 @@ local plugins = {
 		keys = {
 
 			{ "<leader>ff", function()
-				require('telescope.builtin').find_files({ find_command = { "fd" } })
+				require('telescope.builtin').find_files({ find_command = { "fd", "--strip-cwd-prefix", "--type", "f" } })
 			end, {} },
 			{ "<leader>fg", function()
 				require('telescope.builtin').live_grep()
