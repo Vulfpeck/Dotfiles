@@ -1,20 +1,22 @@
 local plugins = {
 	{
-		"catppuccin/nvim",
-		name = "catppuccin",
-		config = function()
-			require("catppuccin").setup({
-				flavour = "mocha",
-				transparent_background = true,
-				no_bold = true,
-			})
-			vim.opt.termguicolors = true
-			-- vim.cmd("colorscheme gruvbox-material")
-			vim.cmd("colorscheme catppuccin-mocha")
-		end,
+		"sainnhe/gruvbox-material",
 		lazy = false,
+		config = function()
+			vim.cmd("colorscheme gruvbox-material")
+		end,
 	},
-	{ 'savq/melange-nvim' },
+	{ "sindrets/diffview.nvim",   event = "VeryLazy" },
+	{ 'nvim-lua/lsp-status.nvim', event = "VeryLazy" },
+	{
+		"lewis6991/gitsigns.nvim",
+		event = "VeryLazy",
+		config = function()
+			require("gitsigns").setup({
+				current_line_blame = true,
+			})
+		end,
+	},
 	{
 		"nvim-telescope/telescope-fzf-native.nvim",
 		build = "make",
@@ -47,45 +49,81 @@ local plugins = {
 			require("telescope").load_extension("fzf")
 		end,
 		keys = {
-
-			{ "<leader>ff", function()
-				require('telescope.builtin').find_files({ find_command = { "fd", "--strip-cwd-prefix", "--type", "f" } })
-			end, {} },
-			{ "<leader>fg", function()
-				require('telescope.builtin').live_grep()
-			end, },
-			{ "<leader>gs", function()
-				require('telescope.builtin').grep_string()
-			end, },
-			{ "<leader>fb", function()
-				require('telescope.builtin').buffers()
-			end, },
-			{ "<leader>fr", function()
-				require('telescope.builtin').resume()
-			end, },
-			{ "<leader>fh", function()
-				require('telescope.builtin').help_tags()
-			end, },
-			{ "<leader>lr", function()
-				require('telescope.builtin').lsp_references()
-			end, },
-			{ "<leader>ld", function()
-				require('telescope.builtin').diagnostics()
-			end, },
-			{ "<leader>li", function()
-				require('telescope.builtin').lsp_implementations()
-			end, },
-			{ "<leader>ldf", function()
-				require('telescope.builtin').lsp_definitions()
-			end, },
-			{ "n", "<leader>ltd", function()
-				require('telescope.builtin').lsp_type_definitions()
-			end, },
+			{
+				"<leader>ff",
+				function()
+					require("telescope.builtin").find_files({
+						find_command = { "fd", "--strip-cwd-prefix", "--type", "f" },
+					})
+				end,
+				{},
+			},
+			{
+				"<leader>fg",
+				function()
+					require("telescope.builtin").live_grep()
+				end,
+			},
+			{
+				"<leader>gs",
+				function()
+					require("telescope.builtin").grep_string()
+				end,
+			},
+			{
+				"<leader>fb",
+				function()
+					require("telescope.builtin").buffers()
+				end,
+			},
+			{
+				"<leader>fr",
+				function()
+					require("telescope.builtin").resume()
+				end,
+			},
+			{
+				"<leader>fh",
+				function()
+					require("telescope.builtin").help_tags()
+				end,
+			},
+			{
+				"<leader>lr",
+				function()
+					require("telescope.builtin").lsp_references()
+				end,
+			},
+			{
+				"<leader>ld",
+				function()
+					require("telescope.builtin").diagnostics()
+				end,
+			},
+			{
+				"<leader>li",
+				function()
+					require("telescope.builtin").lsp_implementations()
+				end,
+			},
+			{
+				"<leader>ldf",
+				function()
+					require("telescope.builtin").lsp_definitions()
+				end,
+			},
+			{
+				"n",
+				"<leader>ltd",
+				function()
+					require("telescope.builtin").lsp_type_definitions()
+				end,
+			},
 		},
 	},
 	{
 		"nvim-treesitter/nvim-treesitter",
-		event = "BufRead",
+		event = "VeryLazy",
 		config = function()
 			require("nvim-treesitter.configs").setup({
 				autotag = {
@@ -127,11 +165,11 @@ local plugins = {
 					additional_vim_regex_highlighting = false,
 				},
 			})
-		end
+		end,
 	},
 	{
 		"jose-elias-alvarez/null-ls.nvim",
-		event = "BufRead",
+		event = "VeryLazy",
 		config = function()
 			local null_ls = require("null-ls")
 
@@ -167,7 +205,6 @@ local plugins = {
 			end
 
 			local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-
 
 			null_ls.setup({
 				on_attach = function(client, bufnr)
@@ -211,11 +248,11 @@ local plugins = {
 					null_ls.builtins.formatting.fish_indent,
 				},
 			})
-		end
+		end,
 	},
 	{
 		"jay-babu/mason-null-ls.nvim",
-		lazy = "BufRead",
+		lazy = "VeryLazy",
 		dependencies = {
 			"williamboman/mason.nvim",
 			"jose-elias-alvarez/null-ls.nvim",
@@ -228,12 +265,12 @@ local plugins = {
 				automatic_installation = true, -- You can still set this to `true`
 				automatic_setup = true,
 			})
-		end
+		end,
 	},
 	{
 		"VonHeikemen/lsp-zero.nvim",
 		branch = "v2.x",
-		event = "BufRead",
+		event = "VeryLazy",
 		config = function()
 			local lsp = require("lsp-zero").preset({
 				name = "recommended",
@@ -241,7 +278,6 @@ local plugins = {
 				manage_nvim_cmp = true,
 				suggest_lsp_servers = true,
 			})
-
 
 			lsp.ensure_installed({
 				-- JS Crap
@@ -301,18 +337,21 @@ local plugins = {
 			-- Autocompletion
 			{
 				"hrsh7th/nvim-cmp",
-				event = "BufRead",
+				event = "VeryLazy",
 				config = function()
 					local cmp = require("cmp")
 					cmp.setup({
 						window = {
 							completion = cmp.config.window.bordered(),
 						},
+						completion = {
+							keyword_length = 1
+						},
 						mapping = {
 							["<C-Space>"] = cmp.mapping.complete(),
 						},
 					})
-				end
+				end,
 			},                       -- Required
 			{ "hrsh7th/cmp-nvim-lsp" }, -- Required
 			{ "L3MON4D3/LuaSnip" },  -- Required
@@ -351,15 +390,16 @@ local plugins = {
 				},
 				view = {},
 			})
-		end
+		end,
 	},
 	{
 		"numToStr/Comment.nvim",
-		event = "BufRead",
+		event = "VeryLazy",
 		config = function()
 			require("Comment").setup({})
 		end,
 	},
+
 	{
 		"romgrk/barbar.nvim",
 		dependencies = "nvim-tree/nvim-web-devicons",
@@ -368,27 +408,27 @@ local plugins = {
 		keys = {
 			-- Move to previous/next
 
-			{ "<S-TAB>",   "<Cmd>BufferPrevious<CR>", },
-			{ "<TAB>",     "<Cmd>BufferNext<CR>", },
+			{ "<S-TAB>",   "<Cmd>BufferPrevious<CR>" },
+			{ "<TAB>",     "<Cmd>BufferNext<CR>" },
 			-- Re-order to previous/next
-			{ "<A-<>",     "<Cmd>BufferMovePrevious<CR>", },
-			{ "<A->>",     "<Cmd>BufferMoveNext<CR>", },
+			{ "<A-<>",     "<Cmd>BufferMovePrevious<CR>" },
+			{ "<A->>",     "<Cmd>BufferMoveNext<CR>" },
 			-- Goto buffer in position...
-			{ "<A-1>",     "<Cmd>BufferGoto 1<CR>", },
-			{ "<A-2>",     "<Cmd>BufferGoto 2<CR>", },
-			{ "<A-3>",     "<Cmd>BufferGoto 3<CR>", },
-			{ "<A-4>",     "<Cmd>BufferGoto 4<CR>", },
-			{ "<A-5>",     "<Cmd>BufferGoto 5<CR>", },
-			{ "<A-6>",     "<Cmd>BufferGoto 6<CR>", },
-			{ "<A-7>",     "<Cmd>BufferGoto 7<CR>", },
-			{ "<A-8>",     "<Cmd>BufferGoto 8<CR>", },
-			{ "<A-9>",     "<Cmd>BufferGoto 9<CR>", },
-			{ "<A-0>",     "<Cmd>BufferLast<CR>", },
+			{ "<A-1>",     "<Cmd>BufferGoto 1<CR>" },
+			{ "<A-2>",     "<Cmd>BufferGoto 2<CR>" },
+			{ "<A-3>",     "<Cmd>BufferGoto 3<CR>" },
+			{ "<A-4>",     "<Cmd>BufferGoto 4<CR>" },
+			{ "<A-5>",     "<Cmd>BufferGoto 5<CR>" },
+			{ "<A-6>",     "<Cmd>BufferGoto 6<CR>" },
+			{ "<A-7>",     "<Cmd>BufferGoto 7<CR>" },
+			{ "<A-8>",     "<Cmd>BufferGoto 8<CR>" },
+			{ "<A-9>",     "<Cmd>BufferGoto 9<CR>" },
+			{ "<A-0>",     "<Cmd>BufferLast<CR>" },
 			-- Pin/unpin buffer
-			{ "<A-p>",     "<Cmd>BufferPin<CR>", },
+			{ "<A-p>",     "<Cmd>BufferPin<CR>" },
 			-- Close buffer
-			{ "<leader>x", "<Cmd>BufferClose<CR>", },
-			{ "<leader>w", "<Cmd>w<CR>", },
+			{ "<leader>x", "<Cmd>BufferClose<CR>" },
+			{ "<leader>w", "<Cmd>w<CR>" },
 			-- Wipeout buffer
 			--                 :BufferWipeout
 			-- Close commands
@@ -398,32 +438,33 @@ local plugins = {
 			--                 :BufferCloseBuffersLeft
 			--                 :BufferCloseBuffersRight
 			-- Magic buffer-picking mode
-			{ "<C-p>",     "<Cmd>BufferPick<CR>", },
+			{ "<C-p>",     "<Cmd>BufferPick<CR>" },
 			-- Sort automatically by...
-			{ "<Space>bb", "<Cmd>BufferOrderByBufferNumber<CR>", },
-			{ "<Space>bd", "<Cmd>BufferOrderByDirectory<CR>", },
-			{ "<Space>bl", "<Cmd>BufferOrderByLanguage<CR>", },
-			{ "<Space>bw", "<Cmd>BufferOrderByWindowNumber<CR>", },
+			{ "<Space>bb", "<Cmd>BufferOrderByBufferNumber<CR>" },
+			{ "<Space>bd", "<Cmd>BufferOrderByDirectory<CR>" },
+			{ "<Space>bl", "<Cmd>BufferOrderByLanguage<CR>" },
+			{ "<Space>bw", "<Cmd>BufferOrderByWindowNumber<CR>" },
 
-			{ "<C-h>",     "<Cmd>wincmd h<CR>", },
-			{ "<C-j>",     "<Cmd>wincmd j<CR>", },
-			{ "<C-k>",     "<Cmd>wincmd k<CR>", },
-			{ "<C-l>",     "<Cmd>wincmd l<CR>", },
-		}
+			{ "<C-h>",     "<Cmd>wincmd h<CR>" },
+			{ "<C-j>",     "<Cmd>wincmd j<CR>" },
+			{ "<C-k>",     "<Cmd>wincmd k<CR>" },
+			{ "<C-l>",     "<Cmd>wincmd l<CR>" },
+		},
 	},
 	{
 		"windwp/nvim-ts-autotag",
-		event = "BufRead",
+		event = "VeryLazy",
 	},
 	{
 		"windwp/nvim-autopairs",
-		event = "BufRead",
+		event = "VeryLazy",
 		config = function()
 			require("nvim-autopairs").setup({})
 		end,
 	},
 	{
 		"tiagovla/scope.nvim",
+		event = "VeryLazy",
 		config = function()
 			require("scope").setup()
 		end
@@ -431,8 +472,8 @@ local plugins = {
 	{
 		"kdheepak/lazygit.nvim",
 		keys = {
-			{ "<leader>lg", "<cmd>LazyGit<cr>", { silent = true, noremap = true } }
-		}
+			{ "<leader>lg", "<cmd>LazyGit<cr>", { silent = true, noremap = true } },
+		},
 	},
 	{
 		"akinsho/toggleterm.nvim",
@@ -441,26 +482,26 @@ local plugins = {
 			{
 				"<C-\\>",
 				function()
-					require("toggleterm").toggle(null, null, null, "float")
+					require("toggleterm").toggle(nil, nil, nil, "float")
 				end,
-				mode = { "n", "t" }
+				mode = { "n", "t" },
 			},
 			{
 				"<C-t>",
 				function()
-					require("toggleterm").toggle(null, null, null, "horizontal")
+					require("toggleterm").toggle(nil, nil, nil, "horizontal")
 				end,
-				mode = "n"
+				mode = "n",
 			},
 			{
 				"<C-`>",
 
 				function()
-					require("toggleterm").toggle(null, null, null, "vertical")
+					require("toggleterm").toggle(nil, nil, nil, "vertical")
 				end,
-				mode = "n"
+				mode = "n",
 			},
-		}
+		},
 	},
 	{
 		"sidebar-nvim/sidebar.nvim",
@@ -482,7 +523,7 @@ local plugins = {
 	},
 	{
 		"tpope/vim-fugitive",
-		event = "VeryLazy"
+		event = "VeryLazy",
 	},
 	{
 		"nvim-lualine/lualine.nvim",
@@ -493,19 +534,17 @@ local plugins = {
 	},
 	{
 		"justinmk/vim-sneak",
-		event = "BufRead"
+		event = "VeryLazy",
 	},
 	{
 		"mg979/vim-visual-multi",
-		event = "BufRead",
+		event = "VeryLazy",
 		config = function() end,
 	},
 }
 
-require("lazy").setup(
-	plugins, {
-		defaults = {
-			lazy = true
-		},
-	}
-)
+require("lazy").setup(plugins, {
+	defaults = {
+		lazy = true,
+	},
+})
