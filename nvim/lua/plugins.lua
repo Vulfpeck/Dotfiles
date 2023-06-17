@@ -1,13 +1,14 @@
 local plugins = {
 	{
-		"sainnhe/gruvbox-material",
+		"nordtheme/vim",
 		lazy = false,
 		config = function()
-			vim.cmd("colorscheme gruvbox-material")
+			vim.cmd("set termguicolors")
+			vim.cmd("colorscheme nord")
 		end,
 	},
 	{ "sindrets/diffview.nvim",   event = "VeryLazy" },
-	{ 'nvim-lua/lsp-status.nvim', event = "VeryLazy" },
+	{ "nvim-lua/lsp-status.nvim", event = "VeryLazy" },
 	{
 		"lewis6991/gitsigns.nvim",
 		event = "VeryLazy",
@@ -345,7 +346,7 @@ local plugins = {
 							completion = cmp.config.window.bordered(),
 						},
 						completion = {
-							keyword_length = 1
+							keyword_length = 1,
 						},
 						mapping = {
 							["<C-Space>"] = cmp.mapping.complete(),
@@ -467,7 +468,7 @@ local plugins = {
 		event = "VeryLazy",
 		config = function()
 			require("scope").setup()
-		end
+		end,
 	},
 	{
 		"kdheepak/lazygit.nvim",
