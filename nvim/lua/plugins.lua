@@ -1,14 +1,13 @@
 local plugins = {
 	{
-		"nordtheme/vim",
+		"olivercederborg/poimandres.nvim",
 		lazy = false,
 		config = function()
 			vim.cmd("set termguicolors")
-			vim.cmd("colorscheme nord")
+			vim.cmd("colorscheme poimandres")
 		end,
 	},
-	{ "sindrets/diffview.nvim",   event = "VeryLazy" },
-	{ "nvim-lua/lsp-status.nvim", event = "VeryLazy" },
+	{ "sindrets/diffview.nvim", event = "VeryLazy" },
 	{
 		"lewis6991/gitsigns.nvim",
 		event = "VeryLazy",
@@ -525,13 +524,6 @@ local plugins = {
 	{
 		"tpope/vim-fugitive",
 		event = "VeryLazy",
-	},
-	{
-		"nvim-lualine/lualine.nvim",
-		event = "VeryLazy",
-		config = function()
-			require("lualine").setup()
-		end,
 	},
 	{
 		"justinmk/vim-sneak",
