@@ -1,12 +1,4 @@
 local plugins = {
-	{
-		"olivercederborg/poimandres.nvim",
-		lazy = false,
-		config = function()
-			vim.cmd("set termguicolors")
-			vim.cmd("colorscheme poimandres")
-		end,
-	},
 	{ "sindrets/diffview.nvim", event = "VeryLazy" },
 	{
 		"lewis6991/gitsigns.nvim",
@@ -39,7 +31,7 @@ local plugins = {
 				},
 				extensions = {
 					fzf = {
-						fuzzy = true, -- false will only do exact matching
+						fuzzy = true,             -- false will only do exact matching
 						override_generic_sorter = true, -- override the generic sorter
 						override_file_sorter = true, -- override the file sorter
 						case_mode = "smart_case", -- or "ignore_case" or "respect_case"
@@ -331,8 +323,8 @@ local plugins = {
 		end,
 		dependencies = {
 			-- LSP Support
-			{ "neovim/nvim-lspconfig" }, -- Required
-			{ "williamboman/mason.nvim" }, -- Optional
+			{ "neovim/nvim-lspconfig" },          -- Required
+			{ "williamboman/mason.nvim" },        -- Optional
 			{ "williamboman/mason-lspconfig.nvim" }, -- Optional
 
 			-- Autocompletion
@@ -353,9 +345,9 @@ local plugins = {
 						},
 					})
 				end,
-			}, -- Required
+			},                       -- Required
 			{ "hrsh7th/cmp-nvim-lsp" }, -- Required
-			{ "L3MON4D3/LuaSnip" }, -- Required
+			{ "L3MON4D3/LuaSnip" },  -- Required
 		},
 	},
 	{
@@ -409,24 +401,24 @@ local plugins = {
 		keys = {
 			-- Move to previous/next
 
-			{ "<S-TAB>", "<Cmd>BufferPrevious<CR>" },
-			{ "<TAB>", "<Cmd>BufferNext<CR>" },
+			{ "<S-TAB>",   "<Cmd>BufferPrevious<CR>" },
+			{ "<TAB>",     "<Cmd>BufferNext<CR>" },
 			-- Re-order to previous/next
-			{ "<A-<>", "<Cmd>BufferMovePrevious<CR>" },
-			{ "<A->>", "<Cmd>BufferMoveNext<CR>" },
+			{ "<A-<>",     "<Cmd>BufferMovePrevious<CR>" },
+			{ "<A->>",     "<Cmd>BufferMoveNext<CR>" },
 			-- Goto buffer in position...
-			{ "<A-1>", "<Cmd>BufferGoto 1<CR>" },
-			{ "<A-2>", "<Cmd>BufferGoto 2<CR>" },
-			{ "<A-3>", "<Cmd>BufferGoto 3<CR>" },
-			{ "<A-4>", "<Cmd>BufferGoto 4<CR>" },
-			{ "<A-5>", "<Cmd>BufferGoto 5<CR>" },
-			{ "<A-6>", "<Cmd>BufferGoto 6<CR>" },
-			{ "<A-7>", "<Cmd>BufferGoto 7<CR>" },
-			{ "<A-8>", "<Cmd>BufferGoto 8<CR>" },
-			{ "<A-9>", "<Cmd>BufferGoto 9<CR>" },
-			{ "<A-0>", "<Cmd>BufferLast<CR>" },
+			{ "<A-1>",     "<Cmd>BufferGoto 1<CR>" },
+			{ "<A-2>",     "<Cmd>BufferGoto 2<CR>" },
+			{ "<A-3>",     "<Cmd>BufferGoto 3<CR>" },
+			{ "<A-4>",     "<Cmd>BufferGoto 4<CR>" },
+			{ "<A-5>",     "<Cmd>BufferGoto 5<CR>" },
+			{ "<A-6>",     "<Cmd>BufferGoto 6<CR>" },
+			{ "<A-7>",     "<Cmd>BufferGoto 7<CR>" },
+			{ "<A-8>",     "<Cmd>BufferGoto 8<CR>" },
+			{ "<A-9>",     "<Cmd>BufferGoto 9<CR>" },
+			{ "<A-0>",     "<Cmd>BufferLast<CR>" },
 			-- Pin/unpin buffer
-			{ "<A-p>", "<Cmd>BufferPin<CR>" },
+			{ "<A-p>",     "<Cmd>BufferPin<CR>" },
 			-- Close buffer
 			{ "<leader>x", "<Cmd>BufferClose<CR>" },
 			{ "<leader>w", "<Cmd>w<CR>" },
@@ -439,17 +431,17 @@ local plugins = {
 			--                 :BufferCloseBuffersLeft
 			--                 :BufferCloseBuffersRight
 			-- Magic buffer-picking mode
-			{ "<C-p>", "<Cmd>BufferPick<CR>" },
+			{ "<C-p>",     "<Cmd>BufferPick<CR>" },
 			-- Sort automatically by...
 			{ "<Space>bb", "<Cmd>BufferOrderByBufferNumber<CR>" },
 			{ "<Space>bd", "<Cmd>BufferOrderByDirectory<CR>" },
 			{ "<Space>bl", "<Cmd>BufferOrderByLanguage<CR>" },
 			{ "<Space>bw", "<Cmd>BufferOrderByWindowNumber<CR>" },
 
-			{ "<C-h>", "<Cmd>wincmd h<CR>" },
-			{ "<C-j>", "<Cmd>wincmd j<CR>" },
-			{ "<C-k>", "<Cmd>wincmd k<CR>" },
-			{ "<C-l>", "<Cmd>wincmd l<CR>" },
+			{ "<C-h>",     "<Cmd>wincmd h<CR>" },
+			{ "<C-j>",     "<Cmd>wincmd j<CR>" },
+			{ "<C-k>",     "<Cmd>wincmd k<CR>" },
+			{ "<C-l>",     "<Cmd>wincmd l<CR>" },
 		},
 	},
 	{
