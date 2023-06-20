@@ -22,7 +22,6 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.scrolloff = 20
 vim.api.nvim_set_option("clipboard", "unnamed")
-vim.cmd("colorscheme slate")
 
 if vim.fn.executable("nvr") == 1 then
 	vim.env.GIT_EDITOR = "nvr --remote-tab-wait +'set bufhidden=delete'"

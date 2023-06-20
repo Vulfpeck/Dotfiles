@@ -1,4 +1,11 @@
 local plugins = {
+	{
+		"sainnhe/gruvbox-material",
+		lazy = false,
+		config = function()
+			vim.cmd("colorscheme gruvbox-material")
+		end,
+	},
 	{ "sindrets/diffview.nvim", event = "VeryLazy" },
 	{
 		"lewis6991/gitsigns.nvim",
@@ -106,7 +113,6 @@ local plugins = {
 				end,
 			},
 			{
-				"n",
 				"<leader>ltd",
 				function()
 					require("telescope.builtin").lsp_type_definitions()

@@ -2340,6 +2340,6 @@ include ./theme.conf
 
 
 # BEGIN_KITTY_THEME
-# Tomorrow Night Eighties
+# purpurite
 include current-theme.conf
 # END_KITTY_THEME
