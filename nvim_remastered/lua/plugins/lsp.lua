@@ -191,7 +191,7 @@ return {
     { 'hrsh7th/cmp-buffer' },
     {
       "jose-elias-alvarez/null-ls.nvim",
-      event = "VeryLazy",
+      event = "BufRead",
       config = function()
         setup_null_ls_format()
       end,
